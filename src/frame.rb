@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Frame
   attr_accessor :ball_1, :ball_2, :total_frame
 

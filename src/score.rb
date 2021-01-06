@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Score
   def initialize
     @extra_ball = 0
