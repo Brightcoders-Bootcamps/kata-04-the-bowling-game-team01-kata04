@@ -1,3 +1,4 @@
 # Setup
 
-Escribe aquí los pasos para ejecutar/probar tu proyecto
+Run the file **app.rb** in the src folder like
+- `$ ruby src/app.rb`
