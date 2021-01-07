@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Score
+  attr_accessor :extra_ball, :frames
+  
   def initialize
     @extra_ball = 0
     @frames = []
