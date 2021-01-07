@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+# Clase dedicada a la puntuacion
 class Score
   attr_accessor :extra_ball, :frames
-  
+
   def initialize
     @extra_ball = 0
     @frames = []
@@ -27,28 +28,28 @@ class Score
 
   def update_score
     if @frames.length > 1
-      if @frames[-2].is_spare?
-        @frames[-2].total_frame += @frames[-1].ball_1
-      elsif @frames[-2].is_strike?
-        total_strike_plus = @frames[-1].ball_1 + @frames[-1].ball_2
+      if @frames[-2].spares?
+        @frames[-2].total_frame += @frames[-1].ball1
+      elsif @frames[-2].strikes?
+        total_strike_plus = @frames[-1].ball1 + @frames[-1].ball2
         @frames[-2].total_frame += total_strike_plus
       end
       @frames[-1].total_frame += @frames[-2].total_frame
     end
-    if @frames.length == 10 && (@frames[-1].is_strike? || @frames[-1].is_spare?)
-      @extra_ball = rand(0..10)
-      @frames[-1].total_frame += @extra_ball
-    end
+    return unless @frames.length == 10 && (@frames[-1].strikes? || @frames[-1].spares?)
+
+    @extra_ball = rand(0..10)
+    @frames[-1].total_frame += @extra_ball
   end
 
   def show_rolls
     @frames.each do |frame|
-      if frame.is_strike?
+      if frame.strikes?
         print("\t|X|")
-      elsif frame.is_spare?
-        print("\t#{frame.ball_1}|/|")
+      elsif frame.spares?
+        print("\t#{frame.ball1}|/|")
       else
-        print("\t#{frame.ball_1}|#{frame.ball_2}|")
+        print("\t#{frame.ball1}|#{frame.ball2}|")
       end
     end
     print @extra_ball if @extra_ball != 0

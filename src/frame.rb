@@ -1,24 +1,25 @@
 # frozen_string_literal: true
 
+# Clase dedicada el tablero de juego
 class Frame
-  attr_accessor :ball_1, :ball_2, :total_frame
+  attr_accessor :ball1, :ball2, :total_frame
 
-  def initialize(ball_1, ball_2)
-    @ball_1 = ball_1
-    @ball_2 = ball_2
-    @total_frame = @ball_1 + @ball_2
-    if @ball_1 == 10
+  def initialize(ball1, ball2)
+    @ball1 = ball1
+    @ball2 = ball2
+    @total_frame = @ball1 + @ball2
+    if @ball1 == 10
       @strike = true
     elsif @total_frame == 10
       @spare = true
     end
   end
 
-  def is_strike?
+  def strikes?
     @strike
   end
 
-  def is_spare?
+  def spares?
     @spare
   end
 end
